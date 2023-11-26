@@ -9,6 +9,6 @@ channel = "stable-23_05"
 language = "nodejs"
 
 [deployment]
-run = ["node", "index.js"]
+run = "npm run dev"
 deploymentTarget = "gce"
 ignorePorts = false

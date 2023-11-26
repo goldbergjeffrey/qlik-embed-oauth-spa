@@ -1,23 +1,26 @@
+const __dirname = new URL('.', import.meta.url).pathname;
 import { auth } from 'express-openid-connect';
 import express from 'express';
 import { join } from 'path';
+import { config } from './config.js';
 
-const __dirname = new URL('.', import.meta.url).pathname;
 
-const config = {
+const Auth0config = {
   authRequired: false,
   auth0Logout: true,
-  secret: process.env[`sessionSecret`],
-  baseURL: 'https://<WEB_APPLICATION_HOSTNAME_AND_DOMAIN>',
-  clientID: process.env[`clientId`],
-  clientSecret: process.env[`clientSecret`],
-  issuerBaseURL: process.env[`idpUri`],
+  secret: config.sessionSecret,
+  baseURL: `https://${config.HOST}`,
+  clientID: config.clientId,
+  clientSecret: config.clientSecret,
+  issuerBaseURL: `https://${config.idpUri}`,
   authorizationParams: {
     response_type: 'code',
     scope: 'openid profile email'
   },
   attemptSilentLogin: true,
 };
+
+console.log(import.meta.url);
 
 // This example uses express.js to provide the proxy services between the
 // frontend web application and Qlik Cloud REST endpoints and websocket
@@ -26,7 +29,7 @@ const app = express();
 app.use(express.static("public"));
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
+app.use(auth(Auth0config));
 
 // req.isAuthenticated is provided from the auth router
 app.get('/', (req, res) => {
@@ -41,6 +44,6 @@ app.get('/oauth-callback', (req, res) => {
   res.sendFile('/public/oauth-callback.html')
 })
 
-const server = app.listen(3000, () => {
+const server = app.listen(process.env.PORT, () => {
   console.log('Backend started');
 })
