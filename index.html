@@ -10,9 +10,9 @@
       crossorigin="anonymous"
       type="application/javascript"
       src="https://cdn.jsdelivr.net/npm/@qlik/embed-web-components"
-      data-host="https://oauth-patterns.us.qlikcloud.com"
-      data-client-id="7df548ae8b56ed81f0dad80b0f2e6e82"
-      data-redirect-uri="https://qlik-embed-oauth-spa.qlik.repl.co/oauth-callback.html"
+      data-host="https://<TENANT_HOSTNAME>.<REGION>.qlikcloud.com"
+      data-client-id="<OAUTH_SPA_CLIENT_ID_FROM_TENANT>"
+      data-redirect-uri="<WEB_APPLICATION_CALLBACK_PAGE>"
       data-access-token-storage="session"
       data-auth-type="Oauth2"
       data-auto-redirect="true"
@@ -20,7 +20,7 @@
   </head>
   <body>
     <h1>
-      Hello @qlik/embed.js!
+      Hello @qlik/embed-web-components
     </h1>
     <p>
       This example uses the new embed.js library from Qlik to embed visualizations and the Qlik Sense client using OAuth2 single-page application flow.
