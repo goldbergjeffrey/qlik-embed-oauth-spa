@@ -10,107 +10,134 @@
       crossorigin="anonymous"
       type="application/javascript"
       src="https://cdn.jsdelivr.net/npm/@qlik/embed-web-components"
-      data-host="<QLIK_CLOUD_TENANT_URI>"
-      data-client-id="<QLIK_CLOUD_OAUTH_SPA_CLIENT_ID>"
-      data-redirect-uri="<THIS_WEB_APPLICATION_OAUTH_CALLBACK_URL>"
-      data-access-token-storage="session"
       data-auth-type="Oauth2"
+      data-host="https://example.us.qlikcloud.com"
+      data-client-id="7df548ae8b56ed81f0dad80b0f2e6e82"
+      data-redirect-uri="https://web-application.somedomain.com/oauth-callback.html"
+      data-access-token-storage="session"
       data-auto-redirect="true"
     ></script>
   </head>
   <body>
-    <h1>
-      Hello @qlik/embed-web-components
-    </h1>
-    <p>
-      This example uses the new embed.js library from Qlik to embed visualizations and the Qlik Sense client using OAuth2 single-page application flow.
-    </p>
-    <div>
-      <qlik-embed
-        ui="selections"
-        app-id="a51a902d-76a9-4c53-85d2-066b44240146">
-        </qlik-embed>
+    <div class="tippy-top">
+      <div class="top-bar">@qlik/embed-web-components example</div>
     </div>
-    <div>
-      <div class="viz">
-        <qlik-embed
-          id="field_acount"
-          ui="field"
-          app-id="a51a902d-76a9-4c53-85d2-066b44240146"
-          field-id="AccountDesc"
-        ></qlik-embed>
+    <div class="main-app">
+      <div class="side-panel">
+        <ul>
+          <li>
+            <a href="#home">Home</a>
+          </li>
+          <li>
+            <a href="#classic-app">Classic App</a>
+          </li>
+          <li>
+            <a href="#analytics-chart">Analytics Chart</a>
+          </li>
+          <li>
+            <a href="#analytics-chart-data">Analytics Chart data</a>
+          </li>
+          <li>
+            <a href="#field">Field</a>
+          </li>
+          <li>
+            <a href="#analytics-sheet">Analytics Sheet</a>
+          </li>
+          <li>
+            <a href="#sheet-nav">Sheet navigation</a>
+          </li>
+        </ul>
       </div>
-    </div>
-      <div class="viz" style="float:left;">
-        <qlik-embed
-          id="visualization"
-          ui="analytics/chart"
-          app-id="a51a902d-76a9-4c53-85d2-066b44240146"
-          object-id="ZxDKp"
-          context:json="{theme:'breeze', language:'de'}"
-          disable-cell-padding="true"
-        ></qlik-embed>
+      <div class="content"> 
+        <div id="home" class="home fb-ig" style="margin-top: 50px; padding-top: 50px;">
+          <h2>&lt;- Pick an example</h2>
+          <p>
+            The examples in the left panel demonstrates how the @qlik/embed-web-components library can be used in embedding scenarios.
+          </p>
+        </div>
+        <div id="classic-app" class="container">
+          <h1>qlik-embed classic/app embeds the full Qlik Sense client in the page.</h1>
+          <div class="selections-bar">
+            <qlik-embed
+            ui="selections"
+            app-id="a51a902d-76a9-4c53-85d2-066b44240146">
+            </qlik-embed>
+          </div>
+          <div class="classic-app">
+            <qlik-embed
+              ui="classic/app"
+              app-id="a51a902d-76a9-4c53-85d2-066b44240146"
+              sheet-id="FaQeFa"
+              theme="breeze"
+              bookmark="uFjMpUZ"
+              select:json="[{field:'AccountDesc',values:['Claims','Commission']}]"
+            ></qlik-embed>
+          </div>
+        </div>
+        <div id="analytics-chart" class="container">
+          <h1>qlik-embed analytics/chart embeds a chart in the page.</h1>
+          <h3><i>Renders only nebula.js visualizations.</i></h3>
+          <div class="viz">
+            <qlik-embed
+              id="visualization"
+              ui="analytics/chart"
+              app-id="a51a902d-76a9-4c53-85d2-066b44240146"
+              object-id="ZxDKp"
+              context:json="{theme:'breeze', language:'de'}"
+              disable-cell-padding="true"
+            ></qlik-embed>
+          </div>
+        </div>
+        <div id="analytics-chart-data" class="container">
+          <h1>Custom table from analytics/chart object data.</h1>
+          <h3><code>let chartData = objLayout.qHyperCube.qDataPages[0].qMatrix;</code></h3>
+          <div id="chart-data" class="viz">
+            
+          </div>
+        </div>
+        <div id="field" class="container">
+          <h1>qlik-embed field embeds a list box in the page.</h1>
+          <div class="viz">
+            <qlik-embed
+              ui="field"
+              app-id="a51a902d-76a9-4c53-85d2-066b44240146"
+              field-id="AccountDesc"
+            ></qlik-embed>
+          </div>
+        </div>
+        <div id="analytics-sheet" class="container">
+          <h1>qlik-embed analytics/sheet embeds a list box in the page.</h1>
+          <h3><i>Renders only nebula.js visualizations in sheets.</i></h3>
+          <div class="classic-app">
+            <qlik-embed
+              ui="analytics/sheet"
+              app-id="a51a902d-76a9-4c53-85d2-066b44240146"
+              object-id="e2047b0f-193c-40b9-8e0f-4a2161a47ee9"
+            ></qlik-embed>
+          </div>
+        </div>
+        <div id="sheet-nav" class="container">
+          <h1>Use the app model to get a list of sheets and control sheet navigation.</h1>
+          <h3><i>Renders only nebula.js visualizations in sheets.</i></h3>
+          <select id="sheetdrop" name="SheetList" class="sheet-drop"></select>
+          <div class="classic-app">
+            <qlik-embed
+              id="sheet-change"
+              ui="analytics/sheet"
+              app-id="a51a902d-76a9-4c53-85d2-066b44240146"
+              object-id="e2047b0f-193c-40b9-8e0f-4a2161a47ee9"
+            ></qlik-embed>
+          </div>
+        </div>
       </div>
-      <div class="viz" style="margin-left: 50%;">
-        <qlik-embed
-          ui="object"
-          app-id="a51a902d-76a9-4c53-85d2-066b44240146"
-          object-id="nvqpV"
-        ></qlik-embed>
-      </div>
-    <p>Here's an example of an entire app</p>
-    <div class="app">
-      <qlik-embed
-        ui="classic/app"
-        app-id="a51a902d-76a9-4c53-85d2-066b44240146"
-        sheet-id="FaQeFa"
-        theme="breeze"
-        bookmark="uFjMpUZ"
-        select:json="[{field:'AccountDesc',values:['Claims','Commission']}]"
-      ></qlik-embed>
-    </div>
-    <select id="sheetdrop" name="SheetList">
-</select>
-    <div class="app">
-      <qlik-embed
-        id="sheetItem"
-        ui="object"
-        app-id="a51a902d-76a9-4c53-85d2-066b44240146"
-        object-id="e2047b0f-193c-40b9-8e0f-4a2161a47ee9"
-      ></qlik-embed>
     </div>
   </body>
   <script type="module">
-
-
-    const element = document.getElementById("visualization");
-    const sheetItem = document.getElementById("sheetItem");
+    const element = document.getElementById("sheet-change");
     const refApi = await element.getRefApi();
-    //const obj = await refApi.getObject();
     const doc = await refApi.getDoc();
-    //const appProps = await refApi.getAppLayout();
-    const myList = await doc.getSheetList();
-    console.log("myList");
-    console.log(myList);
-const obj = await doc.createSessionObject({
-      "qInfo": {
-        "qId": "sheetList",
-        "qType": "SheetList"
-      },
-      "qAppObjectListDef": {
-        "qType": "sheet",
-        "qData": {
-          "title": "/qMetaDef/title",
-          "thumbnail": "/thumbnail",
-          "cells": "/cells",
-          "rank": "/rank",
-          "columns": "/columns",
-          "rows": "/rows"
-        }
-      }
-    });
-const sheetsLayout = await obj.getLayout();
-const sheetList = sheetsLayout.qAppObjectList.qItems;
+    const sheetList = await doc.getSheetList();
+   
     let dd = document.getElementById('sheetdrop');
     dd.length = 0;
     let defaultOption = document.createElement('option');
@@ -119,10 +146,10 @@ const sheetList = sheetsLayout.qAppObjectList.qItems;
     dd.selectedIndex=0;
 
     let option;
-    for (let i=0;i<myList.length; i++) {
+    for (let i=0;i<sheetList.length; i++) {
       option = document.createElement('option');
-      option.text = myList[i].qMeta.title;
-      option.value = myList[i].qMeta.id;
+      option.text = sheetList[i].qMeta.title;
+      option.value = sheetList[i].qMeta.id;
       dd.add(option);
     }
 
@@ -132,9 +159,45 @@ const sheetList = sheetsLayout.qAppObjectList.qItems;
         //console.log(dd.options[dd.selectedIndex].value);
         let selOption = dd.options[dd.selectedIndex];
         console.log(selOption.value);
-        sheetItem.setAttribute('object-id', selOption.value);
+        element.setAttribute('object-id', selOption.value);
       }
     });
 
+  </script>
+  <script type="module">
+    //Get the data from the visualization in the page
+    console.log("trying to get some data");
+    const element = document.getElementById("visualization");
+    const refApi = await element.getRefApi();
+    const obj = await refApi.getObject();
+    const objLayout = await obj.getLayout();
+    console.log(objLayout);
+
+    let container = document.getElementById("chart-data");
+    let table = document.createElement("table");
+    let cols = [objLayout.qHyperCube.qDimensionInfo[0].title,objLayout.qHyperCube.qMeasureInfo[0].title];
+    let thead = document.createElement("thead");
+    let tr = document.createElement("tr");
+    cols.forEach((item) => {
+      let th = document.createElement("th");
+      th.textContent = item;
+      tr.appendChild(th);
+    });
+    thead.appendChild(tr);
+    table.appendChild(thead);
+
+    let chartData = objLayout.qHyperCube.qDataPages[0].qMatrix;
+    chartData.forEach((item) => {
+      console.log(item)
+      let tr = document.createElement("tr");
+      let vals = Object.values(item);
+      vals.forEach((elem) => {
+        let td = document.createElement("td");
+        td.textContent = elem.qText;
+        tr.appendChild(td);
+      });
+      table.appendChild(tr);
+    });
+    container.appendChild(table);
   </script>
 </html>

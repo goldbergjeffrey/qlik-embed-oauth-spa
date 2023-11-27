@@ -25,9 +25,9 @@
   position: relative;
   box-sizing: border-box;
 }
-/* 
-.viz {
-  height: 80px;
+
+.classic-app {
+  height: 800px;
   border: 1px solid #bbb;
   flex-grow: 1;
   border-radius: 3px;
@@ -37,7 +37,7 @@
   overflow: auto;
   position: relative;
 }
- */
+
 /* App.css */
 
 .main-app {
@@ -45,13 +45,15 @@
   display: flex;
   flex-direction: row;
   align-items: stretch;
+  margin-top: 50px;
 }
 
 .content {
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  margin-left: 220px;
+  overflow:hidden;
 }
 
 body,
@@ -75,6 +77,8 @@ html {
   flex-direction: column;
   align-items: stretch;
   box-sizing: border-box;
+  margin-top: 50px;
+  padding-top: 50px;
 }
 
 #root {
@@ -94,9 +98,11 @@ html {
   color: white;
   padding: 10px 20px;
   width: 150px;
-  position: relative;
+  position: fixed;
   flex: 0 1 auto;
   border-right: 1px solid #bbb;
+  overflow:hidden;
+  height:100%;
 }
 
 .side-panel ul {
@@ -116,6 +122,14 @@ html {
   color: #007bff;
 }
 
+.tippy-top {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 2;
+}
+
 .top-bar {
   background-color: #333;
   color: white;
@@ -125,4 +139,17 @@ html {
   flex: 0 1 auto;
   display: flex;
   justify-content: space-between;
+}
+
+.sheet-drop {
+  width: 250px;
+  margin-bottom: 10px;
+  font-size: medium;
+}
+
+a.anchor {
+  display: block;
+  position: relative;
+  top: -50px;
+  visibility: hidden;
 }

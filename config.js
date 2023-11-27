@@ -16,7 +16,6 @@ else
   });
 }
 
-//update host for replit
 
 const config = {
   NODE_ENV: process.env.NODE_ENV || 'dev',
