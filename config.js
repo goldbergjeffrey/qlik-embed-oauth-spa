@@ -3,11 +3,13 @@ import * as path from 'path';
 
 const __dirname = new URL('.', import.meta.url).pathname;
 
+console.log(process.env.HOST);
+
 // Support for replit secrets
-if(process.env.NODE_ENV === 'replit')
+if(process.env.REPL_SLUG)
 {
-  dotenv.config();
   process.env.HOST = `${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`;
+  process.env.NODE_ENV = 'replit';
 }
 else
 {
@@ -15,7 +17,6 @@ else
       path: path.resolve(__dirname, `env/${process.env.NODE_ENV}.env`)
   });
 }
-
 
 const config = {
   NODE_ENV: process.env.NODE_ENV || 'dev',
