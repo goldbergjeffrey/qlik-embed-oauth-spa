@@ -5,6 +5,7 @@ import { join } from 'path';
 import { config } from './config.js';
 
 
+
 const Auth0config = {
   authRequired: false,
   auth0Logout: true,
@@ -19,8 +20,6 @@ const Auth0config = {
   },
   attemptSilentLogin: true,
 };
-
-console.log(import.meta.url);
 
 // This example uses express.js to provide the proxy services between the
 // frontend web application and Qlik Cloud REST endpoints and websocket
