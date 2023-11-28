@@ -3,8 +3,6 @@ import * as path from 'path';
 
 const __dirname = new URL('.', import.meta.url).pathname;
 
-console.log(process.env.HOST);
-
 // Support for replit secrets
 if(process.env.REPL_SLUG)
 {
@@ -14,7 +12,7 @@ if(process.env.REPL_SLUG)
 else
 {
   dotenv.config({
-      path: path.resolve(__dirname, `env/${process.env.NODE_ENV}.env`)
+    path: path.resolve(__dirname, `env/${process.env.NODE_ENV}.env`)
   });
 }
 
