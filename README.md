@@ -1,6 +1,6 @@
 # qlik-embed-oauth-spa
 Example repl for using qlik-embed with Auth0 OIDC and Qlik Cloud OAuth single-page application. Requires Qlik Cloud enterprise tenant.
 
-Learn more at [qlik.dev](https://qlik.dev)
+Fork this repl or clone the repo from [https://github.com/qlik-oss/qlik-embed-oauth-spa](https://github.com/qlik-oss/qlik-embed-oauth-spa).
 
-This example should work with Replit or a local environment.
+Follow the tutorial at [qlik.dev](https://qlik.dev/embed/qlik-embed/qlik-embed-spa-tutorial).
