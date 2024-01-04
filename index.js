@@ -1,19 +1,20 @@
-const __dirname = new URL('.', import.meta.url).pathname;
 import { auth } from 'express-openid-connect';
 import express from 'express';
 import { join } from 'path';
 import { config } from './config.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const Auth0config = {
   authRequired: false,
   auth0Logout: true,
   secret: config.sessionSecret,
-  baseURL: `https://${config.HOST}`,
+  baseURL: config.HOST,
   clientID: config.clientId,
   clientSecret: config.clientSecret,
-  issuerBaseURL: `https://${config.idpUri}`,
+  issuerBaseURL: config.idpUri,
   authorizationParams: {
     response_type: 'code',
     scope: 'openid profile email'
