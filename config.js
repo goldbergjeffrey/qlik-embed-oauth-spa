@@ -1,7 +1,9 @@
 import * as dotenv from 'dotenv';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-const __dirname = new URL('.', import.meta.url).pathname;
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Support for replit secrets
 if(process.env.REPL_SLUG)
